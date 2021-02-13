@@ -1,32 +1,35 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import styled from 'styled-components';
-import useRequestData from '../../hooks/useRequest.js'
-import { ScreenContainer } from './styled';
-import { BASE_URL } from '../../constants/urls';
-import PokemonCard from "../../componentes/PokemonCard/PokemonCard.js";
+import React, { useContext } from "react";
+import GlobalStateContext from '../../global/GlobalStateContext.js'
+import { PokeListContainer } from './styled';
+import PokemonCard from "../../componentes/PokemonCard/PokemonCard";
 import Header from '../../componentes/Header/Header'
+import { useHistory } from "react-router-dom"
+
 
 const HomeScreen = () => {
-    const [pokemonsData] = useRequestData({}, `${BASE_URL}/pokemon/`)
+    const { pokemons } = useContext(GlobalStateContext);
     
     return (
-        <div>
-            <Header />
-            <ScreenContainer>
-                {pokemonsData.results && 
-                pokemonsData.results.map((pokemon) => {
-                    return ( 
-                        <PokemonCard
-                            key={pokemon.name}
-                            poke={pokemon.name}
-                            name={pokemon.name}
-                        />
-                    )
-                })}           
-            </ScreenContainer>
-            
-        </div>
+        <>
+        <Header />
+        <PokeListContainer>
+            {pokemons && 
+            pokemons.map((pokemon) => {
+                return ( 
+                    <div>
+                        {pokemons.map((poke) => {
+                            return <PokemonCard 
+                            name={poke.name} 
+                            key={poke.name} 
+                            poke={poke} 
+                        /> 
+                        })}
+                    </div>
+                )
+            })}  
+        </PokeListContainer>
+        {console.log(pokemons)}
+        </>
     )
 }
 

@@ -7,6 +7,7 @@ import { HeaderContainer, LeftHeaderButton, RightHeaderButton } from "./styled";
 const Header = () => {
     return (
         <HeaderContainer>
+            <LeftHeaderButton>Ir para Pokedex</LeftHeaderButton>
             <h1>Lista de Pokemons</h1>
         </HeaderContainer>
     )

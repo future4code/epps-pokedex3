@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   PokemonImage,
   CardContainer,
@@ -6,13 +6,20 @@ import {
   PriceText,
   NameText
 } from "./styled";
+import GlobalStateContext from '../../global/GlobalStateContext'
+
 
 const PokemonCard = (props) => {
+
+    const { pokemons, setPokemons } = useContext(
+        GlobalStateContext
+    )
+
     return (
         <CardContainer>
             <PokemonImage 
-            src={props.poke && props.image}
-            alt={props.name}
+            src={props.poke && props.poke.sprites.front_default}
+            alt={props.poke.name}
             />
 
             <NameText>{props.name}</NameText>
