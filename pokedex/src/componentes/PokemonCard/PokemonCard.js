@@ -3,13 +3,17 @@ import {
   PokemonImage,
   CardContainer,
   PriceContainer,
-  PriceText,
-  NameText
+  NameText,
+  ButtonsContainer
 } from "./styled";
 import GlobalStateContext from '../../global/GlobalStateContext'
+import { useHistory } from "react-router-dom";
+import { goToDetailsScreen } from "../../routers/Conductor";
 
 
 const PokemonCard = (props) => {
+
+    const history = useHistory();
 
     const { pokemons, setPokemons } = useContext(
         GlobalStateContext
@@ -24,8 +28,14 @@ const PokemonCard = (props) => {
 
             <NameText>{props.name}</NameText>
             <PriceContainer>
-                <button>Adicionar a pokedex</button>
-                <button>Mostrar Detalhes</button>
+                <ButtonsContainer>
+                    <button>Adicionar a Pokedex</button>
+                    <button
+                        onClick={() =>
+                            goToDetailsScreen(history, props.poke.name)
+                          }
+                    >Mostrar Detalhes</button>
+                </ButtonsContainer>
             </PriceContainer>
         </CardContainer>
     )

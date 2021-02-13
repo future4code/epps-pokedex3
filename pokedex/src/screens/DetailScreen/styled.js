@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { backgroundCard } from '../../constants/colors';
+import { backgroundCard } from "../../constants/colors";
 
 export const PokeInfosContainer = styled.main`
   height: 80vh;

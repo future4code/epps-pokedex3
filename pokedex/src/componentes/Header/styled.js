@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { backgroundCard } from '../../constants/colors'
 
 export const HeaderContainer = styled.header`
   height: 8vh;
-  background: #30a7d7;
+  background: ${ backgroundCard };
   display: flex;
   align-items: center;
   justify-content: center;
