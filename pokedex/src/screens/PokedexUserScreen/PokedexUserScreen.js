@@ -24,6 +24,7 @@ const PokedexUserScreen = () => {
                                 />
                     })}
             </PokeListContainer>
+            <button onClick={() => goToHomeScreen(history)}>Voltar para lista de Pokemons</button>
         </>
     )
 }
