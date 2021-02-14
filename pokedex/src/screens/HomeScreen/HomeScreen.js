@@ -3,10 +3,13 @@ import GlobalStateContext from '../../global/GlobalStateContext.js'
 import { PokeListContainer } from './styled';
 import PokemonCard from "../../componentes/PokemonCard/PokemonCard";
 import Header from '../../componentes/Header/Header'
+import { capitalize } from '../../hooks/capitalize'
 
 
 const HomeScreen = () => {
     const { pokemons } = useContext(GlobalStateContext);
+
+
     
     return (
         <>
@@ -17,7 +20,7 @@ const HomeScreen = () => {
                 return ( 
                     <div>
                         {<PokemonCard 
-                                name={pokemon.name} 
+                                name={capitalize(pokemon.name)} 
                                 key={pokemon.name} 
                                 poke={pokemon} 
                         />}

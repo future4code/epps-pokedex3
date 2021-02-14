@@ -2,37 +2,22 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import {
-  TypeAndMovesContainer,
   PokeInfosContainer,
   ImgWrapper,
-  ImagesContainer,
-  StatsContainer,
-  TitleContainer,
-  TypesContainer,
-  MovesContainer
 } from "./styled";
 import Header from "../../componentes/Header/Header";
 import GlobalStateContext from "../../global/GlobalStateContext";
+import { capitalize } from '../../hooks/capitalize'
 
 const DetailScreen = () => {
 
     const [selectedPokemon, setSelectedPokemon] = useState({});
     const history = useHistory();
     const { pokemons } = useContext(GlobalStateContext)
-    const { name, telaPokedex } = useParams();
+    const { name } = useParams();
 
     useEffect(() => {
         let current = [];
-        // if (telaPokedex) {
-        //   current = pokedex.find((item) => {
-        //     return item.name === name;
-        //   });
-        // } else {
-        //   current = pokemons.find((item) => {
-        //     return item.name === name;
-        //   });
-        // }
-
         current = pokemons.find((item) => {
             return item.name === name;
         });
@@ -46,7 +31,7 @@ const DetailScreen = () => {
             <Header />
             <PokeInfosContainer>
                 <ImgWrapper src={selectedPokemon?.sprites?.front_default} />
-                <h1>Nome: {selectedPokemon.name}</h1>
+                <h1>Nome: {capitalize(selectedPokemon.name)}</h1>
 
                  <h2>Poderes</h2>
                 <div>
@@ -86,17 +71,3 @@ const DetailScreen = () => {
 }
 
 export default DetailScreen;
-
-// {selectedPokemon &&
-//     selectedPokemon.stats.map((stat) => {
-//         return (
-//             <p key={stat.stat.name}>
-//                 <strong>{stat.stat.name}: </strong>
-//                 {stat.base_stat}
-//             </p>
-//         )
-// })}
-// {selectedPokemon &&
-// selectedPokemon.types.map((type) => {
-//   return <p key={type.type.name}>{type.type.name}</p>;
-// })}
